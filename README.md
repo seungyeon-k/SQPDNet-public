@@ -32,6 +32,6 @@ The project is developed under a standard PyTorch environment.
 - numba
 - scikit-image -->
 
-## Runnint
+## Running
 preparing...
 

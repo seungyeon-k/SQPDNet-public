@@ -1,0 +1,35 @@
+realworld: true
+model:
+  arch: sqpdnet
+  seg_module:
+    path: pretrained/segmentation_config/pretrained
+    checkpoint: model_best.pkl
+  recog_module:
+    path: pretrained/recognition_config/pretrained
+    checkpoint: model_best.pkl
+  motion_module:
+    path: pretrained/sqpdnet_2d_motion_only_config/pretrained
+    checkpoint: model_best.pkl
+  enable_gui: false
+  calibration_k: 25
+  num_pts_recog: 512
+objects:
+controller:
+  evaluator:
+    k: 25
+    num_pts_recog: 512
+  sample_num: 300
+  action_horizon: 1
+  criterior: moving
+  goal_positions: 
+    goal1:
+      position_xy: [0.4, 0.3]
+      orientation: [0, 0, 0, 1]
+    goal2:
+      position_xy: [0.35, 0.3]
+      orientation: [0, 0, 0, 1]
+    goal3:
+      position_xy: [0.3, 0.3]
+      orientation: [0, 0, 0, 1]
+  target_object: largest
+  

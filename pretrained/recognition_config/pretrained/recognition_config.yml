@@ -1,0 +1,87 @@
+data:
+  test:
+    batch_size: 8
+    loader: surround_recognition
+    noise_augment: true
+    noise_std: 0.001
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: false
+  training:
+    batch_size: 8
+    loader: surround_recognition
+    noise_augment: true
+    noise_std: 0.001
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: true
+  validation:
+    batch_size: 8
+    loader: surround_recognition
+    noise_augment: true
+    noise_std: 0.001
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: false
+device: cuda:1
+model:
+  arch: sqnet
+  backbone:
+    arch: dgcnn
+    global_feature_dim: 1024
+    input_dim: 4
+    k: 20
+    l_hidden_local:
+    - 64
+    - 64
+    - 128
+    - 256
+    leakyrelu_slope: 0.2
+    use_batch_norm: false
+    use_mean_global_feature: false
+    use_spatial_transform: false
+  orientation:
+    l_hidden:
+    - 512
+    - 256
+    output_dim: 4
+  position:
+    l_hidden:
+    - 512
+    - 256
+    output_dim: 3
+  shape:
+    l_hidden:
+    - 512
+    - 256
+    output_dim: 2
+  size:
+    l_hidden:
+    - 512
+    - 256
+    output_dim: 3
+trainer:
+  loss:
+    type: sq_loss
+  n_epoch: 1000
+  optimizer:
+    lr: 5.0e-05
+    name: adam
+  print_interval: 100
+  save_interval: 10000
+  type: recognition
+  val_interval: 5000
+  visualize_interval: 5000
+  visualize_number: 3

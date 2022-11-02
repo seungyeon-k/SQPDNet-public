@@ -1,0 +1,58 @@
+model:
+  arch: segnet
+  backbone:
+    arch: dgcnn
+    use_spatial_transform: False
+    use_mean_global_feature: False
+    k: 20
+    leakyrelu_slope: 0.2
+    input_dim: 3
+    l_hidden_local: [64, 64, 128, 256]
+    local_feature_layer: 4
+    global_feature_dim: 1024
+  l_hidden: [512, 256, 128]
+  num_classes: 5
+trainer:
+  type: segmentation
+  n_epoch: 500
+  loss:
+    type: segmentation_loss
+  optimizer:
+    name: 'adam'
+    lr: 0.0005
+  clip_grad: 1
+  metric:
+    type: segmentation
+  print_interval: 100
+  val_interval: 5000
+  save_interval: 100000
+  visualize_number: 3
+  visualize_interval: 100000
+data:
+  training:
+    loader: segmentation
+    num_points: 2048
+    noise_augment: True
+    noise_std: 0.001
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  validation:
+    loader: segmentation
+    num_points: 2048
+    noise_augment: True
+    noise_std: 0.001
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: False
+  test:
+    loader: segmentation
+    num_points: 2048
+    noise_augment: True
+    noise_std: 0.001
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: False

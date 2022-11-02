@@ -1,0 +1,78 @@
+data:
+  test:
+    batch_size: 8
+    loader: segmentation
+    noise_augment: true
+    noise_std: 0.001
+    num_points: 2048
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: false
+  training:
+    batch_size: 8
+    loader: segmentation
+    noise_augment: true
+    noise_std: 0.001
+    num_points: 2048
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: true
+  validation:
+    batch_size: 8
+    loader: segmentation
+    noise_augment: true
+    noise_std: 0.001
+    num_points: 2048
+    num_workers: 8
+    paths:
+    - datasets/unknown_2d_1
+    - datasets/unknown_2d_2
+    - datasets/unknown_2d_3
+    - datasets/unknown_2d_4
+    shuffle: false
+device: cuda:0
+model:
+  arch: segnet
+  backbone:
+    arch: dgcnn
+    global_feature_dim: 1024
+    input_dim: 3
+    k: 20
+    l_hidden_local:
+    - 64
+    - 64
+    - 128
+    - 256
+    leakyrelu_slope: 0.2
+    local_feature_layer: 4
+    use_mean_global_feature: false
+    use_spatial_transform: false
+  l_hidden:
+  - 512
+  - 256
+  - 128
+  num_classes: 5
+trainer:
+  clip_grad: 1
+  loss:
+    type: segmentation_loss
+  metric:
+    type: segmentation
+  n_epoch: 1000
+  optimizer:
+    lr: 0.0005
+    name: adam
+  print_interval: 100
+  save_interval: 100000
+  type: segmentation
+  val_interval: 5000
+  visualize_interval: 100000
+  visualize_number: 3

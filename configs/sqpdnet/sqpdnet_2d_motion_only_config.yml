@@ -1,0 +1,69 @@
+model:
+  arch: sqpdnet
+  motion_module:
+    arch: motionnet
+    num_primitives: 4
+    motion_dim: 2D
+    action_dim: 5
+    dsq_dim: 13
+    action:
+      l_hidden: [64, 128]
+      output_dim: 256
+    ego:
+      l_hidden: [64, 128]
+      output_dim: 256
+    global_1:
+      l_hidden: [64, 128]
+      output_dim: 256
+    global_2:
+      l_hidden: [256, 256]
+      output_dim: 256
+    motion_position:
+      l_hidden: [256, 256, 128, 128, 64, 64]
+    motion_orientation:
+      l_hidden: [256, 256, 128, 128, 64, 64]
+trainer:
+  type: sqpdnet
+  n_epoch: 500
+  loss:
+    type: motion_loss
+    weight: 0.1
+  optimizer:
+    name: 'adam'
+    lr: 0.0005
+  metric:
+    type: motion_prediction
+    motion_dim: 2D
+  print_interval: 100
+  val_interval: 5000
+  save_interval: 100000
+  visualize_number: 3
+  visualize_interval: 100000
+data:
+  training:
+    loader: sqpdnet
+    parameters_noise_augment: True
+    motion_noise_augment: True
+    motion_noise_std: 0.02
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  validation:
+    loader: sqpdnet
+    parameters_noise_augment: True
+    motion_noise_augment: True
+    motion_noise_std: 0.02
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  test:
+    loader: sqpdnet
+    parameters_noise_augment: True
+    motion_noise_augment: True
+    motion_noise_std: 0.02
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: False

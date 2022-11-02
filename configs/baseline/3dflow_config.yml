@@ -1,0 +1,44 @@
+model:
+  arch: dsr-net
+  object_num: 5
+  motion_type: conv
+trainer:
+  type: baseline
+  n_epoch: 500
+  loss:
+    type: dsr-net_loss
+    alpha_motion: 1.0
+    alpha_mask: 5.0
+  optimizer:
+    name: 'adam'
+    lr: 0.001
+  lr_scheduler:
+    initial_lr: 0.001
+    decay_rate: 0.1
+    decay_epochs: 15
+  print_interval: 100
+  val_interval: 5000
+  visualize_interval: 5000
+  save_interval: 20000
+data:
+  training:
+    loader: dsr-net
+    num_directions: 8
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  validation:
+    loader: dsr-net
+    num_directions: 8
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  test:
+    loader: dsr-net
+    num_directions: 8
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: False

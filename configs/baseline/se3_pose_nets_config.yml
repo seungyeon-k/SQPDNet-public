@@ -1,0 +1,44 @@
+model:
+  arch: flowbasednets
+  backbone: False
+  act_dim: 6
+  num_se3: 5
+  type: se3pose
+trainer:
+  type: baseline
+  n_epoch: 500
+  loss:
+    type: mse
+  optimizer:
+    name: 'adam'
+    # name: 'rmsprop'
+    lr: 0.0001
+    weight_decay: 0.0001
+  # lr_scheduler:
+  #   initial_lr: 0.0001
+  #   decay_rate: 0.1
+  #   decay_epochs: 15
+  print_interval: 100
+  val_interval: 5000
+  eval_interval: 20000
+  visualize_interval: 5000
+  save_interval: 100000
+data:
+  training:
+    loader: se3-nets
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  validation:
+    loader: se3-nets
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: True
+  test:
+    loader: se3-nets
+    paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+    batch_size: 8
+    num_workers: 8
+    shuffle: False

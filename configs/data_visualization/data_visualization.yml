@@ -1,0 +1,28 @@
+training:
+  loader: sqpdnet
+  parameters_noise_augment: True
+  motion_noise_augment: True
+  motion_noise_std: 0.02
+  paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+  batch_size: 8
+  num_workers: 8
+  shuffle: True
+validation:
+  loader: sqpdnet
+  parameters_noise_augment: True
+  motion_noise_augment: True
+  motion_noise_std: 0.02
+  paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+  batch_size: 8
+  num_workers: 8
+  shuffle: True
+test:
+  loader: sqpdnet
+  parameters_noise_augment: True
+  motion_noise_augment: True
+  motion_noise_std: 0.02
+  paths: [datasets/pushing_object_num_1, datasets/pushing_object_num_2, datasets/pushing_object_num_3, datasets/pushing_object_num_4]
+  batch_size: 8
+  num_workers: 8
+  shuffle: False
+

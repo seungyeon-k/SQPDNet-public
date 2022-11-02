@@ -3,12 +3,13 @@ import os.path as osp
 import random
 import torch
 from tensorboardX import SummaryWriter
+import open3d as o3d
 
 import argparse
 from omegaconf import OmegaConf
 from datetime import datetime
 from loader import get_dataloader
-from functions.utils_tensorboard import meshes_to_numpy, mesh_generator_motion
+from functions.utils_tensorboard import mesh_generator_motion, meshes_to_numpy
 
 def run(cfg, writer):
     # Setup seeds
@@ -28,17 +29,29 @@ def run(cfg, writer):
 
     # write data
     i = 0
-    for x, a, y in dataloaders['training']:
+    for data in dataloaders['training']:
 
         # index
         i += 1
-        print(i)
 
-        scene = x[0:3].numpy()
-        action = a[0:3].numpy()
-        motion_gt = y[0:3].numpy()
+        scene = data["x_scene"]
+        scene = scene.reshape(-1, scene.shape[2], scene.shape[3]).numpy()
+        action = data["a_scene"]
+        action = action.reshape(-1, action.shape[2]).numpy()
+        motion_gt = data["y_scene"]
+        motion_gt = motion_gt.reshape(-1, motion_gt.shape[2]).numpy()
 
-        mesh_gt = mesh_generator_motion(scene, action, motion_gt, moved_color=[0, 1, 0])
+        real_idxs = scene[:, 0, 0] == 1
+
+        scene = scene[real_idxs]
+        action = action[real_idxs]
+        motion_gt = motion_gt[real_idxs]
+
+        scene = scene[0:3]
+        action = action[0:3]
+        motion_gt = motion_gt[0:3]
+
+        mesh_gt = mesh_generator_motion(scene, action, motion_gt, moved_color=[0, 1, 0], vis_global_coord=True, vis_object_coord=True)
         gt_vertices, gt_faces, gt_colors = meshes_to_numpy(mesh_gt)
 
         # write to Tensorboard

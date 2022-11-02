@@ -114,6 +114,11 @@ python train.py --config configs/sqpdnet/sqpdnet_{X}_motion_only_config.yml
   ```
   tensorboard --logdir train_results/sqpdnet_{X}_motion_only_config --host {ip address}
   ```
+- If you want to see the overall pushing dynamics dataset in tensorboard, run this code:
+  ```
+  python dataset_visualizer.py --config configs/data_visualization/data_visualization.yml
+  tensorboard --logdir train_results/data_visualization --host {ip address}
+  ```
 
 ### Control in Simulation Environment
 The control scripts in Pybullet simulator are as follows:

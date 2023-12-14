@@ -162,10 +162,13 @@ python train.py --config configs/baseline/{X}_config.yml
 ## Citation
 If you found this repository useful in your research, please consider citing:
 ```
-@inproceedings{kimse,
+@inproceedings{kim2023se,
   title={SE (2)-Equivariant Pushing Dynamics Models for Tabletop Object Manipulations},
   author={Kim, Seungyeon and Lim, Byeongdo and Lee, Yonghyeon and Park, Frank C},
-  booktitle={6th Annual Conference on Robot Learning}
+  booktitle={Conference on Robot Learning},
+  pages={427--436},
+  year={2023},
+  organization={PMLR}
 }
 ```
 

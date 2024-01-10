@@ -3,14 +3,16 @@ The official repository for \<SE(2)-Equivariant Pushing Dynamics Models for Tabl
 
 > This paper proposes a SE(2)-equivariant pushing dynamics model for tabletop object manipulations. Our dynamics model is then used for various downstream pushing manipulation tasks such as the object moving, singulation, and grasping.
 
-- *[Openreview](https://openreview.net/forum?id=4g3PwAp5nsX)* 
 - *[Paper](https://openreview.net/pdf?id=4g3PwAp5nsX)* 
 - *[Supplementary video](https://youtu.be/OLoAHhf7vk0)*
+- *[8-min video](https://drive.google.com/file/d/1CCJROa-7P5hLou3JfOCZUpOdFDIjdZko/view?usp=sharing)*
+- *[Slides](https://drive.google.com/file/d/1C9tP7jdtnxaCzROPNvo4VHdgae_m8ChY/view?usp=sharing)*
+- *[Openreview](https://openreview.net/forum?id=4g3PwAp5nsX)* 
 
 ## Preview
 ### Pushing Manipulation using SQPD-Net
 ![pushing](figures/pushing.PNG)
-<I>Figure 2: Real-world manipulation results using SQPD-Net for moving, singulation, and grasping tasks (for the fourth row case, the target object is the cylinder surrounded by the three cubes). The red arrow at each recognition step means the optimal pushing action. </I>
+<I>Figure 1: Real-world manipulation results using SQPD-Net for moving, singulation, and grasping tasks (for the fourth row case, the target object is the cylinder surrounded by the three cubes). The red arrow at each recognition step means the optimal pushing action. </I>
 
 ## Requirements
 ### Environment

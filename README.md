@@ -3,6 +3,7 @@ The official repository for \<SE(2)-Equivariant Pushing Dynamics Models for Tabl
 
 > This paper proposes a SE(2)-equivariant pushing dynamics model for tabletop object manipulations. Our dynamics model is then used for various downstream pushing manipulation tasks such as the object moving, singulation, and grasping.
 
+- *[Project page](https://sqpdnet.github.io/)*
 - *[Paper](https://openreview.net/pdf?id=4g3PwAp5nsX)* 
 - *[Supplementary video](https://youtu.be/OLoAHhf7vk0)*
 - *[8-min video](https://drive.google.com/file/d/1CCJROa-7P5hLou3JfOCZUpOdFDIjdZko/view?usp=sharing)*
